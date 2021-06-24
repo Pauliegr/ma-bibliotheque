@@ -16,15 +16,15 @@ export default function App() {
   })
 
   function searchBook(){
-    // console.log(searchInput);    
-    const search = books.find(book => searchInput == book.title
-      // if(searchInput !== book.title){
-      //   return 
-      // } 
-      // else {
-      //   return <Text>Not found.</Text>
-      // }
-    );
+    // console.log(searchInput);
+    const search = books.find( found => { 
+      if( searchInput !== found.title){
+        return <Text>Not found.</Text>
+      } 
+      else {
+        return <Books title={book.title} des={book.resume} />
+      }
+    });
     console.log(search);
     // setSearchInput("");
   }
@@ -34,15 +34,14 @@ export default function App() {
       <Text style={styles.title}>Ma bibliotheque</Text>
       <View style={styles.recherche}>
         <TextInput style={styles.input} value={searchInput} onChangeText={(text) => {setSearchInput(text)}} />
-        <Button title="OK" color="teal" onPress={searchBook}/>
+        <Button title="Search" color="teal" onPress={searchBook}/>
       </View>
       <ScrollView>
         <View style={styles.livre}>
           {listBJSX}
         </View>
       </ScrollView>
-    </View>
-    
+    </View>    
   );
 }
 
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
   input:{
     color: 'teal',
     borderWidth: 2,
-    width: 250,
+    width: 220,
     marginRight: 15,
   },
   recherche: {
